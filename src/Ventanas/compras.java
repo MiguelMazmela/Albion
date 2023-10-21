@@ -9,9 +9,11 @@ import java.math.BigDecimal;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.DecimalFormat;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
 import javax.swing.SwingConstants;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
@@ -27,14 +29,14 @@ public class compras extends javax.swing.JInternalFrame {
 
     /**
      * Creates new form compras
+     *
      * @param var
      */
     public compras(Var var) {
         initComponents();
         this.var = var;
         INICIA();
-        
-        
+
     }
 
     /**
@@ -93,6 +95,7 @@ public class compras extends javax.swing.JInternalFrame {
         jTextField8 = new javax.swing.JTextField();
         jPanel7 = new javax.swing.JPanel();
 
+        setBackground(new java.awt.Color(0, 255, 51));
         setClosable(true);
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Comprobantes"));
@@ -128,6 +131,7 @@ public class compras extends javax.swing.JInternalFrame {
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
+        jPanel2.setBackground(new java.awt.Color(0, 255, 255));
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Ingresos"));
 
         jLabel1.setText("comprobante");
@@ -231,6 +235,7 @@ public class compras extends javax.swing.JInternalFrame {
 
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("Detalles"));
 
+        jTable1.setBackground(new java.awt.Color(0, 102, 204));
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -250,8 +255,8 @@ public class compras extends javax.swing.JInternalFrame {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1)
-                .addContainerGap())
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 631, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(12, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -263,7 +268,13 @@ public class compras extends javax.swing.JInternalFrame {
 
         jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder("Controles"));
 
-        jButton1.setText("GRABAR");
+        jButton1.setBackground(new java.awt.Color(255, 0, 0));
+        jButton1.setText("BORRAR");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         jButton2.setText("jButton2");
 
@@ -311,6 +322,7 @@ public class compras extends javax.swing.JInternalFrame {
 
         jButton4.setText("ANTERIOR");
 
+        jButton5.setBackground(new java.awt.Color(51, 255, 0));
         jButton5.setText("GUARDAR");
         jButton5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -329,41 +341,38 @@ public class compras extends javax.swing.JInternalFrame {
                     .addComponent(jLabel9))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, 297, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel10))
+                    .addComponent(jLabel10)
+                    .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jTextField3, javax.swing.GroupLayout.DEFAULT_SIZE, 98, Short.MAX_VALUE)
+                    .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(PRECIO, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jTextField4, javax.swing.GroupLayout.DEFAULT_SIZE, 110, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel11)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 98, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel6Layout.createSequentialGroup()
-                        .addComponent(PRECIO)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(jPanel6Layout.createSequentialGroup()
-                        .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
-                        .addComponent(jButton5)
-                        .addGap(18, 18, 18)
-                        .addComponent(jButton4)
-                        .addGap(19, 19, 19))))
+                    .addComponent(jButton5)
+                    .addComponent(jButton4))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
-                .addGap(8, 8, 8)
+                .addGap(5, 5, 5)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel9)
                     .addComponent(jLabel10)
                     .addComponent(jLabel11)
-                    .addComponent(PRECIO))
+                    .addComponent(PRECIO)
+                    .addComponent(jButton5))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jComboBox3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel8)
-                    .addComponent(jButton5)
                     .addComponent(jButton4))
                 .addContainerGap(15, Short.MAX_VALUE))
         );
@@ -448,13 +457,15 @@ public class compras extends javax.swing.JInternalFrame {
                         .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(18, 66, Short.MAX_VALUE)
                         .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(6, 6, 6)
+                        .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -482,67 +493,104 @@ public class compras extends javax.swing.JInternalFrame {
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         // TODO add your handling code here:
-                    String sql = "insert  into ALMACEN values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);";
-                    BigDecimal descuento = new BigDecimal(0.0);
-                    String ttotal=jTextField4.getText().toUpperCase().trim();
-                    BigDecimal precio = new BigDecimal(ttotal);
-                    int secuencia=numeroSiguente();
-                    
-            try {
-                PreparedStatement stmt = var.getCon().prepareStatement(sql);
-                stmt.setInt(1, secuencia);
-                stmt.setString(2, "CMPR");
-                stmt.setString(3, buscacodigo(jComboBox3.getSelectedItem().toString()));
-                stmt.setString(4, jComboBox3.getSelectedItem().toString());
-                stmt.setFloat(5, var.DeTextoAFloat(jTextField4.getText().toUpperCase().trim()));
-                stmt.setBigDecimal(6, buscaPrecioVenta(jComboBox3.getSelectedItem().toString()));
-                stmt.setFloat(7, var.DeTextoAFloat("0.00"));
-                stmt.setInt(8, var.DeTextoAInteger(jTextField3.getText().toUpperCase().trim()));
-                stmt.setInt(9, buscaFactorUso(jComboBox3.getSelectedItem().toString())*var.DeTextoAInteger(jTextField3.getText().toUpperCase().trim()));
-                stmt.setString(10, "");
-                stmt.setInt(11, 0);
-                stmt.setString(12, jTextField1.getText().toUpperCase().trim());
-                stmt.setInt(13, var.DeTextoAInteger(jTextField2.getText().toUpperCase().trim()));
-                stmt.setString(14, buscaCodigoProveedor(jComboBox2.getSelectedItem().toString()));
-                stmt.setDate(15, var.convert( jDateChooser1.getDate()));
-                stmt.setString(16, "");
-                stmt.setString(17, jComboBox1.getSelectedItem().toString());
-                stmt.executeUpdate();
-                carga_tabla();
-                CARGA_TABLA_DETALLE(jComboBox1.getSelectedItem().toString(),jTextField1.getText().toUpperCase().trim(),var.DeTextoAInteger(jTextField2.getText().toUpperCase().trim()));
-                
+        String sql = "insert  into ALMACEN values(?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);";
+//                    BigDecimal descuento = new BigDecimal(0.0);
+//                    BigDecimal precio = new BigDecimal(ttotal);
+        int secuencia = numeroSiguente();
 
-            } catch (SQLException ex) {
-                Logger.getLogger(compras.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        
+        try {
+            PreparedStatement stmt = var.getCon().prepareStatement(sql);
+            stmt.setInt(1, secuencia);
+            stmt.setString(2, "CMPR");
+            stmt.setString(3, buscacodigo(jComboBox3.getSelectedItem().toString()));
+            stmt.setString(4, jComboBox3.getSelectedItem().toString());
+            stmt.setFloat(5, var.DeTextoAFloat(jTextField4.getText().toUpperCase().trim()));
+            stmt.setBigDecimal(6, buscaPrecioVenta(jComboBox3.getSelectedItem().toString()));
+            stmt.setFloat(7, var.DeTextoAFloat("0.00"));
+            stmt.setInt(8, var.DeTextoAInteger(jTextField3.getText().toUpperCase().trim()));
+            stmt.setInt(9, buscaFactorUso(jComboBox3.getSelectedItem().toString()) * var.DeTextoAInteger(jTextField3.getText().toUpperCase().trim()));
+            stmt.setString(10, "");
+            stmt.setInt(11, 0);
+            stmt.setString(12, jTextField1.getText().toUpperCase().trim());
+            stmt.setInt(13, var.DeTextoAInteger(jTextField2.getText().toUpperCase().trim()));
+            stmt.setString(14, buscaCodigoProveedor(jComboBox2.getSelectedItem().toString()));
+            stmt.setDate(15, var.convert(jDateChooser1.getDate()));
+            stmt.setString(16, "");
+            stmt.setString(17, jComboBox1.getSelectedItem().toString());
+            stmt.executeUpdate();
+            carga_tabla();
+            CARGA_TABLA_DETALLE(jComboBox1.getSelectedItem().toString(), jTextField1.getText().toUpperCase().trim(), var.DeTextoAInteger(jTextField2.getText().toUpperCase().trim()));
+            catualiza_precio_compra(jComboBox3.getSelectedItem().toString(), var.DeTextoAFloat(jTextField4.getText().toUpperCase().trim()));
 
-        
+        } catch (SQLException ex) {
+            Logger.getLogger(compras.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        asigna_totales();
+
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void DETALLEActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DETALLEActionPerformed
         // TODO add your handling code here:
-        String vacio="";
-        if(vacio.equals(jTextField2.getText().toUpperCase().trim())){
+        String vacio = "";
+
+        if (vacio.equals(jTextField2.getText().toUpperCase().trim())) {
             JOptionPane.showMessageDialog(null, "Faltan datos");
-             }else{
-          CARGA_TABLA_DETALLE(jComboBox1.getSelectedItem().toString(),jTextField1.getText().toUpperCase().trim(),var.DeTextoAInteger(jTextField2.getText().toUpperCase().trim()));
-           double total= suma_comprobante(jComboBox1.getSelectedItem().toString(),jTextField1.getText().toUpperCase().trim(),var.DeTextoAInteger(jTextField2.getText().toUpperCase().trim()));
-           
+        } else {
+            CARGA_TABLA_DETALLE(jComboBox1.getSelectedItem().toString(), jTextField1.getText().toUpperCase().trim(), var.DeTextoAInteger(jTextField2.getText().toUpperCase().trim()));
+
+            asigna_totales();
         }
-        
-        
+
+
     }//GEN-LAST:event_DETALLEActionPerformed
 
     private void jTable2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable2MouseClicked
         // TODO add your handling code here:
-                int fila = jTable2.getSelectedRow();
+        int fila = jTable2.getSelectedRow();
         jComboBox1.setSelectedItem(jTable2.getValueAt(fila, 0).toString());
         jTextField1.setText(jTable2.getValueAt(fila, 1).toString());
         jTextField2.setText(jTable2.getValueAt(fila, 2).toString());
-        
-        
+
+
     }//GEN-LAST:event_jTable2MouseClicked
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        int fila = jTable1.getSelectedRow();
+        DecimalFormat df = new DecimalFormat("#.00");
+        if (fila < 0) {
+
+        } else {
+            int res = JOptionPane.showConfirmDialog(null, "Va a borrar un registro",
+                    "YES_NO_OPTION", JOptionPane.YES_NO_OPTION,
+                    JOptionPane.INFORMATION_MESSAGE);
+            if (res == 0) {
+                String dato = jTable1.getValueAt(fila, 1).toString();
+                String serie = jTextField1.getText();
+                String cod = jComboBox1.getSelectedItem().toString();
+                String numero = jTextField2.getText();
+                String sql = "delete from almacen WHERE NOM_COMP='" + cod
+                        + "' AND SERIE ='" + serie + "' AND MUMERO =" + numero
+                        + " AND NOMBRE_ART ='" + dato + "' AND COD_OPER='CMPR'";
+
+                try {
+                    PreparedStatement ps = var.conectar().prepareStatement(sql);
+                    ps.executeUpdate();
+                } catch (SQLException ex) {
+                    Logger.getLogger(compras.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            CARGA_TABLA_DETALLE(jComboBox1.getSelectedItem().toString(), jTextField1.getText().toUpperCase().trim(), var.DeTextoAInteger(jTextField2.getText().toUpperCase().trim()));
+            double total = suma_comprobante(jComboBox1.getSelectedItem().toString(), jTextField1.getText().toUpperCase().trim(), var.DeTextoAInteger(jTextField2.getText().toUpperCase().trim()));
+            jTextField8.setText(df.format(total));
+            double valor = total / 1.18;
+            double igv = total - valor;
+            jTextField7.setText(df.format(igv));
+            jTextField5.setText(df.format(valor));
+            carga_tabla();
+        }
+
+    }//GEN-LAST:event_jButton1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -616,61 +664,58 @@ public class compras extends javax.swing.JInternalFrame {
         jTextField8.setHorizontalAlignment(SwingConstants.RIGHT);
         jTextField5.setText("0.00");
         jTextField5.setHorizontalAlignment(SwingConstants.RIGHT);
+
     }
 
     private void CARGA_COMBO_FACT() {
 //        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
         jComboBox1.removeAllItems();
-        String sql="SELECT * FROM COMPROBANTES";
+        String sql = "SELECT * FROM COMPROBANTES";
         try {
             PreparedStatement ps = var.conectar().prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-                jComboBox1.addItem(rs.getNString("Nom_comp")); 
+                jComboBox1.addItem(rs.getNString("Nom_comp"));
             }
         } catch (SQLException ex) {
             Logger.getLogger(compras.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-        
+
     }
 
     private void CARGA_PROV() {
 //        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
         jComboBox2.removeAllItems();
-        String sql="SELECT * FROM proveedores";
+        String sql = "SELECT * FROM proveedores";
         try {
             PreparedStatement ps = var.conectar().prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-                jComboBox2.addItem(rs.getNString("nombre")); 
+                jComboBox2.addItem(rs.getNString("nombre"));
             }
         } catch (SQLException ex) {
             Logger.getLogger(compras.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-        
-        
+
     }
 
     private void CARGA_PROD() {
 //        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
         jComboBox3.removeAllItems();
-        String sql="SELECT * FROM ingredientes";
+        String sql = "SELECT * FROM ingredientes";
         try {
             PreparedStatement ps = var.conectar().prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
-                jComboBox3.addItem(rs.getNString("nombre")); 
+                jComboBox3.addItem(rs.getNString("nombre"));
             }
         } catch (SQLException ex) {
             Logger.getLogger(compras.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-        
+
     }
 
-    private void CARGA_TABLA_DETALLE(String nom_comp,String serie,int numero) {
+    private void CARGA_TABLA_DETALLE(String nom_comp, String serie, int numero) {
 //        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
         DefaultTableModel modelo = (DefaultTableModel) jTable1.getModel();
         var.borratabla(modelo);
@@ -678,7 +723,7 @@ public class compras extends javax.swing.JInternalFrame {
         //select * from creditos where dia_de_operacion ='2020-10-08' and CPROVEEDOR='00000018 MOLITALIA S.A.' and MONTH(dfecha_documento)='10' and year(dfecha_documento)='2020'
 //        int mesnum=jMonthChooser1.getMonth()+1;
 //        int añonum=jYearChooser1.getValue();
-        String sql = "SELECT * FROM ALMACEN WHERE SERIE ='"+serie+"' AND MUMERO="+numero+" AND NOM_COMP='"+nom_comp+"'";
+        String sql = "SELECT * FROM ALMACEN WHERE SERIE ='" + serie + "' AND MUMERO=" + numero + " AND NOM_COMP='" + nom_comp + "'";
 //                + "from creditos Left Outer Join EXTENCION "
 //                + "using (CNUMERO) "
 //                + "where dia_de_operacion='"+v.carga_ultima_fecha_Texto()+"'"
@@ -709,8 +754,7 @@ public class compras extends javax.swing.JInternalFrame {
 //            Logger.getLogger(Creditosxmes.class.getName()).log(Level.SEVERE, null, ex);
             System.out.println(ex);
         }
-        
-        
+
     }
 
     private void INICIA_TABLA_DETALLE() {
@@ -719,6 +763,7 @@ public class compras extends javax.swing.JInternalFrame {
         String colu[] = {"CODIGO", "NOMBRE", "CANTIDAD", "PRECIO"};
         DefaultTableModel model;
         model = (DefaultTableModel) jTable1.getModel();
+        jTable1.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
         model.setColumnIdentifiers(colu);
 //        jDateChooser2.setDateFormatString("dd-MM-yyyy");
 //        jDateChooser2.setDate(Date.valueOf(LocalDate.now()));
@@ -727,8 +772,8 @@ public class compras extends javax.swing.JInternalFrame {
 
         DefaultTableCellRenderer tcr;
         TableColumnModel columnModel = jTable1.getColumnModel();
-        columnModel.getColumn(0).setPreferredWidth(50);
-        columnModel.getColumn(1).setPreferredWidth(75);
+        columnModel.getColumn(0).setPreferredWidth(70);
+        columnModel.getColumn(1).setPreferredWidth(200);
         columnModel.getColumn(2).setPreferredWidth(75);
         columnModel.getColumn(3).setPreferredWidth(75);
 //        columnModel.getColumn(4).setPreferredWidth(75);
@@ -736,28 +781,28 @@ public class compras extends javax.swing.JInternalFrame {
 //        columnModel.getColumn(6).setPreferredWidth(75);
         tcr = new DefaultTableCellRenderer();
         tcr.setHorizontalAlignment(SwingConstants.RIGHT); //CENTER o LEFT
-//        jTable1.getColumnModel().getColumn(3).setCellRenderer(tcr);
-//        jTable1.getColumnModel().getColumn(4).setCellRenderer(tcr);
-//        jTable1.getColumnModel().getColumn(5).setCellRenderer(tcr);
+        jTable1.getColumnModel().getColumn(0).setCellRenderer(tcr);
+        jTable1.getColumnModel().getColumn(3).setCellRenderer(tcr);
+        tcr.setHorizontalAlignment(SwingConstants.CENTER);
+        jTable1.getColumnModel().getColumn(2).setCellRenderer(tcr);
 //        jTable1.getColumnModel().getColumn(6).setCellRenderer(tcr);
 //        jTable1.setModel(model);
         var.borratabla(model);
         jTable1.setModel(model);
 
-        
     }
 
     private String buscacodigo(String toString) {
 //        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-        String sql = "select codigo from ingredientes where nombre='"+toString+"'";
-        String res="";
-        
+        String sql = "select codigo from ingredientes where nombre='" + toString + "'";
+        String res = "";
+
         try {
             PreparedStatement ps = var.conectar().prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
             rs.next();
-            res=rs.getNString("codigo");
-            
+            res = rs.getNString("codigo");
+
         } catch (SQLException ex) {
             Logger.getLogger(compras.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -766,35 +811,35 @@ public class compras extends javax.swing.JInternalFrame {
 
     private BigDecimal buscaPrecioVenta(String toString) {
 //        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-        
-        String sql = "select ultimo_precio from ingredientes where nombre='"+toString+"'";
-        BigDecimal res=new BigDecimal(0.0);
-        
+
+        String sql = "select ultimo_precio from ingredientes where nombre='" + toString + "'";
+        BigDecimal res = new BigDecimal(0.0);
+
         try {
             PreparedStatement ps = var.conectar().prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
             rs.next();
-            res=rs.getBigDecimal("ultimo_precio");
-            
+            res = rs.getBigDecimal("ultimo_precio");
+
         } catch (SQLException ex) {
             Logger.getLogger(compras.class.getName()).log(Level.SEVERE, null, ex);
         }
         return res;
-        
+
     }
 
     private int buscaFactorUso(String toString) {
 //        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-        
-        String sql = "select factor_venta from ingredientes where nombre='"+toString+"'";
-        int res=0;
-        
+
+        String sql = "select factor_venta from ingredientes where nombre='" + toString + "'";
+        int res = 0;
+
         try {
             PreparedStatement ps = var.conectar().prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
             rs.next();
-            res=rs.getInt("factor_venta");
-            
+            res = rs.getInt("factor_venta");
+
         } catch (SQLException ex) {
             Logger.getLogger(compras.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -803,26 +848,25 @@ public class compras extends javax.swing.JInternalFrame {
 
     private String buscaCodigoProveedor(String toString) {
 //        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-        String sql = "select ruc from proveedores where nombre='"+toString+"'";
-        String res="";
-        
+        String sql = "select ruc from proveedores where nombre='" + toString + "'";
+        String res = "";
+
         try {
             PreparedStatement ps = var.conectar().prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
             rs.next();
-            res=rs.getNString("ruc");
-            
+            res = rs.getNString("ruc");
+
         } catch (SQLException ex) {
             Logger.getLogger(compras.class.getName()).log(Level.SEVERE, null, ex);
         }
         return res;
-        
-        
+
     }
 
     private void carga_tabla() {
 //        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-                DefaultTableModel modelo = (DefaultTableModel) jTable2.getModel();
+        DefaultTableModel modelo = (DefaultTableModel) jTable2.getModel();
         var.borratabla(modelo);
         String sql = "select DISTINCT Nom_comp,Serie,mumero,SUM(precio_compra) AS Tota_ingresos from ALMACEN WHERE Cod_oper='CMPR' group by Nom_comp,mumero,serie";
         Object[] fila = new Object[4]; // Hay tres columnas en la tabla6
@@ -844,16 +888,13 @@ public class compras extends javax.swing.JInternalFrame {
             Logger.getLogger(compras.class.getName()).log(Level.SEVERE, null, ex);
             System.out.println(ex);
         }
-        
-     
-        
-        
+
     }
 
     private void inicia_tabla() {
 //        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
 //                String x[][] = {};
-        String colu[] = {"TIPO","SERIE", "NUMERO", "SOLES"};
+        String colu[] = {"TIPO", "SERIE", "NUMERO", "SOLES"};
         DefaultTableModel model;
         model = (DefaultTableModel) jTable2.getModel();
         model.setColumnIdentifiers(colu);
@@ -881,42 +922,65 @@ public class compras extends javax.swing.JInternalFrame {
         var.borratabla(model);
         jTable2.setModel(model);
 
-        
     }
-
 
     private int numeroSiguente() {
 //        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-        int numsig=1;
+        int numsig = 1;
         String sql = "select max(mum_oper) as sig from ALMACEN";
         try {
             PreparedStatement ps = var.conectar().prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
             rs.next();
-            numsig=numsig+rs.getInt("sig");
-            
+            numsig = numsig + rs.getInt("sig");
+
         } catch (SQLException ex) {
             Logger.getLogger(compras.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
         return numsig;
     }
 
     private double suma_comprobante(String comprobante, String serie, int numero) {
 //        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
-        double total=0.0;
+        double total = 0.0;
         String sql = "select SUM(precio_compra) AS Tota_ingresos "
-                + "from ALMACEN WHERE Cod_oper='CMPR' AND NOM_COMP='"+comprobante+"'"
-                + " AND Serie='"+serie+"' AND mumero="+numero;
+                + "from ALMACEN WHERE Cod_oper='CMPR' AND NOM_COMP='" + comprobante + "'"
+                + " AND Serie='" + serie + "' AND mumero=" + numero;
         try {
             PreparedStatement ps = var.conectar().prepareStatement(sql);
             ResultSet rs = ps.executeQuery();
             rs.next();
-            
+            total = rs.getDouble("Tota_ingresos");
+
         } catch (SQLException ex) {
             Logger.getLogger(compras.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
         return total;
+    }
+
+    private void catualiza_precio_compra(String toString, float DeTextoAFloat) {
+//        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        String sql = "update ingredientes set ultimo_precio=" + DeTextoAFloat + " where nombre='" + toString + "'";
+        try {
+            PreparedStatement ps = var.conectar().prepareStatement(sql);
+            ps.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(compras.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
+
+    private void asigna_totales() {
+//        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        DecimalFormat df = new DecimalFormat("#.00");
+        double total = suma_comprobante(jComboBox1.getSelectedItem().toString(), jTextField1.getText().toUpperCase().trim(), var.DeTextoAInteger(jTextField2.getText().toUpperCase().trim()));
+        jTextField8.setText(df.format(total));
+        double valor = total / 1.18;
+        double igv = total - valor;
+        jTextField7.setText(df.format(igv));
+        jTextField5.setText(df.format(valor));
+
     }
 }
